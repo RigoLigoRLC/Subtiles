@@ -1,4 +1,4 @@
-#include "subtilesmainwindow.h"
+#include "gui/subtilesmainwindow.h"
 #include "ui_subtilesmainwindow.h"
 
 SubtilesMainWindow::SubtilesMainWindow(QWidget *parent) :
@@ -11,4 +11,9 @@ SubtilesMainWindow::SubtilesMainWindow(QWidget *parent) :
 SubtilesMainWindow::~SubtilesMainWindow()
 {
   delete ui;
+}
+
+void SubtilesMainWindow::on_pushButton_2_clicked()
+{
+  qApp->setStyleSheet(ui->textEdit->toPlainText());
 }

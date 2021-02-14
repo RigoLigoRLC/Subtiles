@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/splashes">
-        <file>subtiles-splash.svg</file>
+        <file>splash/subtiles-splash.svg</file>
+        <file>splash/subtiles-splash.png</file>
     </qresource>
 </RCC>
