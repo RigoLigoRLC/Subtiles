@@ -25,17 +25,20 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+    src/datatypes/STBasicTypes.cpp \
         src/gui/subtilesmainwindow.cpp \
         src/main.cpp \
 
 HEADERS += \
+        inc/datatypes/STBasicTypes.h \
         inc/gui/subtilesmainwindow.h
 
 FORMS += \
         ui/subtilesmainwindow.ui
 
 INCLUDEPATH += \
-        inc
+        inc \
+        inc/datatypes
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
