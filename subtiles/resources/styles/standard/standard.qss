@@ -1,0 +1,36 @@
+/* main principle from former Microsoft fluent design. */
+QMainWindow {background-color:#202020}
+QAbstractScrollArea {background-color:#202020; border:1px solid #4e4e4e}
+
+QSplitter::handle{margin:0px 2px}
+
+QPushButton
+{color:#dddddd;
+background-color:#262626;
+border-radius:0; padding:5;
+border: 1px solid #4e4e4e
+}
+QPushButton:hover {background-color:#2d2d2d; border:1px solid #6e6e6e}
+QPushButton:pressed {background-color:#555555}
+QPushButton:focus {background-color:#323232;border:1px solid #5a5a5a}
+QPushButton:focus:hover {background-color:#3a3a3a;border:1px solid #6e6e6e}
+QPushButton:focus:pressed {background-color:#373737}
+
+QGroupBox
+{background-color:#202020;
+margin:8px 0px;
+border-radius:0px;
+border:1px solid #4e4e4e
+}
+QGroupBox::title
+{subcontrol-position: top left;
+subcontrol-origin: margin;
+background-color:#202020;
+left: 10px
+}
+
+QCheckBox::indicator {border-radius:0px; border:1px solid #555555;margin:1px}
+QCheckBox::indicator:hover {border-color: #6e6e6e}
+QCheckBox::indicator:checked {image:url(styles/standard/svgs/checkbox-ticked.svg); background-color:#dddddd;border:0px;}
+
+QRadioButton::indicator {border:1px solid #555555}
