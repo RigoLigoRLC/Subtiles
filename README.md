@@ -1,6 +1,6 @@
 # Subtiles
 
-![Icon](Subtiles.svg)
+![Icon](media/subtiles-logo.svg)
 
 ## Warning
 
