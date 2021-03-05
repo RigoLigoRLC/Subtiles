@@ -6,7 +6,7 @@
 /**
  * @brief Subtiles timecode class. This class focuses on time, eveything is stored in seconds.
  */
-class STTimecode
+class STTimecode final
 {
   private:
     unsigned long m_second;

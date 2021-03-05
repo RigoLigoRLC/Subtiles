@@ -45,7 +45,7 @@ bool STTimecode::SetASSTimecode(const QString &aTimecode)
 
 bool STTimecode::SetTimecode(const unsigned long s, const int fr)
 {
-  if(fr >= 10000)
+  if(fr >= 10000 || fr < 0)
   {
     return false;
   }
@@ -56,7 +56,7 @@ bool STTimecode::SetTimecode(const unsigned long s, const int fr)
 
 bool STTimecode::SetTimecode(const unsigned long s, const double fr)
 {
-  if(fr >= 1)
+  if(fr >= 1 || fr < 0)
   {
     return false;
   }
@@ -67,7 +67,7 @@ bool STTimecode::SetTimecode(const unsigned long s, const double fr)
 
 bool STTimecode::SetTimecode(const unsigned long h, const unsigned long m, const unsigned long s, const int fr)
 {
-  if(fr >= 10000)
+  if(fr >= 10000 || fr < 0)
   {
     return false;
   }
@@ -80,7 +80,7 @@ bool STTimecode::SetTimecode(const unsigned long h, const unsigned long m, const
 
 bool STTimecode::SetTimecode(const unsigned long h, const unsigned long m, const unsigned long s, const double fr)
 {
-  if(fr >= 1)
+  if(fr >= 1 || fr < 0)
   {
     return false;
   }

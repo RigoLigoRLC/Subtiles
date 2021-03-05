@@ -25,7 +25,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
-    src/datatypes/STBasicTypes.cpp \
+        src/datatypes/STBasicTypes.cpp \
         src/gui/subtilesmainwindow.cpp \
         src/main.cpp \
 
