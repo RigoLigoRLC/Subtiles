@@ -8,8 +8,8 @@ QT       += core gui svg
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = subtilesapp
-TEMPLATE = app
+TARGET = subtiles
+TEMPLATE = subdirs
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which has been marked as deprecated (the exact warnings
@@ -27,7 +27,8 @@ CONFIG += c++11
 SOURCES += \
     src/datatypes/STTimecode.cpp \
         src/gui/subtilesmainwindow.cpp \
-        src/main.cpp
+        src/main.cpp \
+    unittest/untitled/tst_datatype_test.cpp
 
 HEADERS += \
         inc/datatypes/STTimecode.h \
@@ -48,3 +49,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 RESOURCES += \
     resources/largeimgs.qrc \
     resources/theme.qrc
+
+SUBDIRS += \
+    subtiles/subtiles.pro \
+    subtiles/unittest/datatypes_test
