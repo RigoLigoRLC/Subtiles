@@ -12,6 +12,7 @@ uint SubtilesMainFrame::CreateMainWindow()
 
 void SubtilesMainFrame::evtMainWindowDestroyed(uint aWho)
 {
+  m_windows[aWho]->deleteLater();
   m_windows[aWho] = nullptr;
 }
 
@@ -23,3 +24,10 @@ SubtilesMainFrame::SubtilesMainFrame()
   // Initialize application
   CreateMainWindow(); // First main window for the app
 }
+
+SubtilesMainFrame::~SubtilesMainFrame()
+{
+  // TODO: figure out what to do with living MainWindows and Guests
+  delete m_host;
+}
+

@@ -26,6 +26,7 @@ class SubtilesMainFrame final : public QObject
     uint m_mwidTop; ///< MainWindowID top value; doesn't go down; each creation of MainWindow will increase it.
   public:
     SubtilesMainFrame();
+    ~SubtilesMainFrame();
 };
 
 #endif // SUBTILESMAINFRAME_H

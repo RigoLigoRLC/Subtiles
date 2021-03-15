@@ -1,4 +1,5 @@
 #include "gui/subtilesmainwindow.h"
+#include "app/subtilesmainframe.h"
 #include <QApplication>
 #include <QSplashScreen>
 
@@ -9,8 +10,7 @@ int main(int argc, char *argv[])
   QSplashScreen splash(QPixmap(":splashes/splash/subtiles-splash.png"));
   splash.show();
 
-  SubtilesMainWindow w;
-  w.show();
+  SubtilesMainFrame frame;
 
   //splash.finish(&w);
 
