@@ -35,3 +35,6 @@
 subtiles/subtiles.pro.user*
 # build directory
 build/
+subtiles.pro.user*
+.vscode
+*.kdev4

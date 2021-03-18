@@ -14,6 +14,7 @@ class SubtilesMainWindow;
 
 class SubtilesMainFrame final : public QObject
 {
+    Q_OBJECT
   private:
     SubtilesHost *m_host;
     QList<SubtilesAbstractGuest *> m_guests;

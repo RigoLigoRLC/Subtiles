@@ -93,7 +93,7 @@ bool STTimecode::SetTimecode(const double s)
     return false;
   }
   m_second = s;
-  m_fraction = fmod(s, 1);
+  m_fraction = qRound(fmod(s, 1) * 10000) / 10000;
   return true;
 }
 
@@ -115,7 +115,7 @@ bool STTimecode::SetTimecode(const unsigned long s, const double fr)
     return false;
   }
   m_second = s;
-  m_fraction = fr;
+  m_fraction = qRound(fr * 10000) / 10000;
   return true;
 }
 
@@ -141,26 +141,30 @@ bool STTimecode::SetTimecode(const unsigned long h, const unsigned long m, const
   m_second = h * 3600 +
              m * 60 +
              s;
-  m_fraction = fr;
+  m_fraction = qRound(fr * 10000) / 10000;
   return true;
 }
 
 STTimecode STTimecode::operator+(const STTimecode &op)
 {
   STTimecode ret;
-  double remainder = fmod(op.m_fraction + this->m_fraction, 1);
-  ret.SetTimecode(op.m_second + op.m_fraction + this->m_fraction + this->m_second, remainder);
+  double orig = static_cast<double>(this->m_second) + this->m_fraction,
+         oper = static_cast<double>(op.m_second) + op.m_fraction;
+  ret.SetTimecode(orig + oper);
   return ret;
 }
 
 STTimecode STTimecode::operator-(const STTimecode &op)
 {
   STTimecode ret;
-  double excess = this->m_fraction - op.m_fraction;
-  if(excess >= 0)
-    ret.SetTimecode(this->m_second - op.m_second, excess);
-  else
-    ret.SetTimecode(this->m_second - op.m_second - 1, 1 - excess);
+  double orig = static_cast<double>(this->m_second) + this->m_fraction,
+         oper = static_cast<double>(op.m_second) + op.m_fraction;
+  if(oper > orig)
+  {
+    ret.SetTimecode(0);
+    return ret;
+  }
+  ret.SetTimecode(orig - oper);
   return ret;
 }
 
@@ -185,6 +189,27 @@ STTimecode STTimecode::operator/(const double op)
 bool STTimecode::operator==(const STTimecode &op)
 {
   return this->m_second == op.m_second && qFuzzyCompare(this->m_fraction, op.m_fraction);
+}
+
+bool STTimecode::operator>(const STTimecode &op)
+{
+  return static_cast<double>(this->m_second) + this->m_fraction > static_cast<double>(op.m_second) + op.m_fraction;
+}
+
+bool STTimecode::operator<=(const STTimecode &op)
+{
+  return static_cast<double>(this->m_second) + this->m_fraction <= static_cast<double>(op.m_second) + op.m_fraction;
+}
+
+
+bool STTimecode::operator>=(const STTimecode &op)
+{
+  return static_cast<double>(this->m_second) + this->m_fraction >= static_cast<double>(op.m_second) + op.m_fraction;
+}
+
+bool STTimecode::operator<(const STTimecode &op)
+{
+  return static_cast<double>(this->m_second) + this->m_fraction < static_cast<double>(op.m_second) + op.m_fraction;
 }
 
 unsigned long STTimecode::ToFrame(const double aFps)

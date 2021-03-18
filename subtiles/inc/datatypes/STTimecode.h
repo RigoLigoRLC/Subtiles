@@ -35,6 +35,11 @@ class STTimecode final
     STTimecode operator/(const double op);
     bool operator==(const STTimecode &op);
 
+    bool operator>(const STTimecode& op);
+    bool operator<(const STTimecode& op);
+    bool operator>=(const STTimecode& op);
+    bool operator<=(const STTimecode& op);
+
     unsigned long ToFrame(const double aFps);
 
     static bool IsValidTimecode(const QString&);

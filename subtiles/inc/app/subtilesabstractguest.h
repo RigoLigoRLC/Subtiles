@@ -5,7 +5,7 @@
 
 class SubtilesAbstractGuest : public QWidget
 {
-
+  Q_OBJECT
 };
 
 #endif // SUBTILESABSTRACTGUEST_H

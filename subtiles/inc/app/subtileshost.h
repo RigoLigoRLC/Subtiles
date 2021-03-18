@@ -6,7 +6,7 @@
 
 class SubtilesHost final : public QObject
 {
-
+  Q_OBJECT
 };
 
 #endif // SUBTILESHOST_H

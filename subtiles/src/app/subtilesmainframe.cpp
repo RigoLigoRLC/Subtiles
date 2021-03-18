@@ -27,7 +27,12 @@ SubtilesMainFrame::SubtilesMainFrame()
 
 SubtilesMainFrame::~SubtilesMainFrame()
 {
-  // TODO: figure out what to do with living MainWindows and Guests
+  // When mainframe is destroyed, the application is effectively quitting.
+  // No need to worry about data safety while painting; just delete them all.
+  for(auto i : m_windows)
+    delete i;
+  for(auto i : m_guests)
+    delete i;
   delete m_host;
 }
 
