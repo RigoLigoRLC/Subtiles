@@ -93,7 +93,7 @@ bool STTimecode::SetTimecode(const double s)
     return false;
   }
   m_second = s;
-  m_fraction = qRound(fmod(s, 1) * 10000) / 10000;
+  m_fraction = static_cast<double>(qRound(fmod(s, 1) * 10000)) / 10000;
   return true;
 }
 
@@ -115,7 +115,7 @@ bool STTimecode::SetTimecode(const unsigned long s, const double fr)
     return false;
   }
   m_second = s;
-  m_fraction = qRound(fr * 10000) / 10000;
+  m_fraction = static_cast<double>(qRound(fr * 10000)) / 10000;
   return true;
 }
 
@@ -141,7 +141,7 @@ bool STTimecode::SetTimecode(const unsigned long h, const unsigned long m, const
   m_second = h * 3600 +
              m * 60 +
              s;
-  m_fraction = qRound(fr * 10000) / 10000;
+  m_fraction = static_cast<double>(qRound(fr * 10000)) / 10000;
   return true;
 }
 
