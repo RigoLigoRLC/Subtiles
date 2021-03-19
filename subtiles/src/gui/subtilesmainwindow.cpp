@@ -1,4 +1,5 @@
 #include <QFile>
+#include <QTextStream>
 #include <QCloseEvent>
 
 #include "gui/subtilesmainwindow.h"
@@ -10,6 +11,11 @@ SubtilesMainWindow::SubtilesMainWindow(QWidget *parent) :
 {
   ui->setupUi(this);
 
+  QFile file(":/styles/styles/standard/standard.qss");
+  QTextStream stream(&file);
+  QString stylesheet = stream.readAll();
+  ui->textEdit->setPlainText(stylesheet);
+  qApp->setStyleSheet(stylesheet);
 }
 
 SubtilesMainWindow::SubtilesMainWindow(uint aMwid, QWidget *parent) :

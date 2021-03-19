@@ -7,6 +7,8 @@
 class SubtilesHost final : public QObject
 {
   Q_OBJECT
+  public:
+    ~SubtilesHost(){};
 };
 
 #endif // SUBTILESHOST_H
