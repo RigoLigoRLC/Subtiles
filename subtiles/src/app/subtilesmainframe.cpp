@@ -28,7 +28,7 @@ SubtilesMainFrame::SubtilesMainFrame()
 
   // Populate dock widgets (guests)
   {
-    m_guests.push_back(new STGuestUiStyleShow("UI Style Show", nullptr));
+    m_guests.push_back(new STGuestUiStyleShow("UI Style Show", window));
   }
   
   foreach(auto &i, m_guests)
@@ -41,9 +41,7 @@ SubtilesMainFrame::~SubtilesMainFrame()
   // When mainframe is destroyed, the application is effectively quitting.
   // No need to worry about data safety while painting; just delete them all.
   for(auto i : m_windows)
-    i->deleteLater();
-  for(auto i : m_guests)
-    i->deleteLater();
+    i->deleteLater(); // Guests will be destoryed along with the window
   m_host->deleteLater();
 }
 
