@@ -1,4 +1,5 @@
 #include "app/subtilesmainframe.h"
+#include "guests/stguestuistyleshow.h"
 
 uint SubtilesMainFrame::CreateMainWindow()
 {
@@ -22,7 +23,17 @@ SubtilesMainFrame::SubtilesMainFrame()
   m_mwidTop = 0;
 
   // Initialize application
-  CreateMainWindow(); // First main window for the app
+  int firstWindowID = CreateMainWindow(); // First main window for the app
+  auto window = m_windows[firstWindowID];
+
+  // Populate dock widgets (guests)
+  {
+    m_guests.push_back(new STGuestUiStyleShow("UI Style Show", nullptr));
+  }
+  
+  foreach(auto &i, m_guests)
+    window->AddDockWidget(ads::TopDockWidgetArea, i);
+
 }
 
 SubtilesMainFrame::~SubtilesMainFrame()
@@ -30,9 +41,9 @@ SubtilesMainFrame::~SubtilesMainFrame()
   // When mainframe is destroyed, the application is effectively quitting.
   // No need to worry about data safety while painting; just delete them all.
   for(auto i : m_windows)
-    delete i;
+    i->deleteLater();
   for(auto i : m_guests)
-    delete i;
-  delete m_host;
+    i->deleteLater();
+  m_host->deleteLater();
 }
 

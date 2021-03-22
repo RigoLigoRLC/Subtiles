@@ -21,6 +21,7 @@ class SubtilesMainFrame final : public QObject
     QMap<uint, SubtilesMainWindow *> m_windows;
   public slots:
     uint CreateMainWindow();
+
   private slots:
     void evtMainWindowDestroyed(uint aWho);
   private:

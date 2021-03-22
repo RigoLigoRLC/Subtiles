@@ -2,7 +2,9 @@
 #define SUBTILESMAINWINDOW_H
 
 #include <QMainWindow>
+
 #include "app/subtilesmainframe.h"
+#include "DockManager.h"
 
 namespace Ui {
   class SubtilesMainWindow;
@@ -15,10 +17,9 @@ class SubtilesMainWindow : public QMainWindow
   public:
     explicit SubtilesMainWindow(QWidget *parent = nullptr);
     explicit SubtilesMainWindow(uint aMwid, QWidget *parent = nullptr);
-    ~SubtilesMainWindow();
+    virtual ~SubtilesMainWindow();
 
-  private slots:
-    void on_pushButton_2_clicked();
+    void AddDockWidget(ads::DockWidgetArea a, ads::CDockWidget *w);
 
   protected:
     void closeEvent(QCloseEvent *e) override;
@@ -29,6 +30,7 @@ class SubtilesMainWindow : public QMainWindow
   private:
     uint m_mwid;
     Ui::SubtilesMainWindow *ui;
+    ads::CDockManager *m_dockMgr;
 };
 
 #endif // SUBTILESMAINWINDOW_H

@@ -3,19 +3,12 @@
 #include <QCloseEvent>
 
 #include "gui/subtilesmainwindow.h"
-#include "ui_subtilesmainwindow.h"
+
 
 SubtilesMainWindow::SubtilesMainWindow(QWidget *parent) :
-  QMainWindow(parent),
-  ui(new Ui::SubtilesMainWindow)
+  QMainWindow(parent)
 {
-  ui->setupUi(this);
-
-  QFile file(":/styles/styles/standard/standard.qss");
-  QTextStream stream(&file);
-  QString stylesheet = stream.readAll();
-  ui->textEdit->setPlainText(stylesheet);
-  qApp->setStyleSheet(stylesheet);
+  m_dockMgr = new ads::CDockManager(this);
 }
 
 SubtilesMainWindow::SubtilesMainWindow(uint aMwid, QWidget *parent) :
@@ -26,16 +19,15 @@ SubtilesMainWindow::SubtilesMainWindow(uint aMwid, QWidget *parent) :
 
 SubtilesMainWindow::~SubtilesMainWindow()
 {
-  delete ui;
-}
-
-void SubtilesMainWindow::on_pushButton_2_clicked()
-{
-  qApp->setStyleSheet(ui->textEdit->toPlainText());
 }
 
 void SubtilesMainWindow::closeEvent(QCloseEvent *e)
 {
   emit sigWindowClosed(m_mwid);
   e->accept();
+}
+
+void SubtilesMainWindow::AddDockWidget(ads::DockWidgetArea aArea, ads::CDockWidget *widget)
+{
+  m_dockMgr->addDockWidget(aArea, widget);
 }
