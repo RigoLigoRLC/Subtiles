@@ -18,6 +18,7 @@ class SubtilesAbstractGuest : public ads::CDockWidget
 
   protected:
     STGuestTypeID m_typeId;
+    QWidget *m_widget; ///< Real widget, convenience for UI designer designed ones
 };
 
 #endif // SUBTILESABSTRACTGUEST_H

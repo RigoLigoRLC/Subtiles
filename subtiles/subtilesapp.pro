@@ -39,7 +39,7 @@ RESOURCES += \
 
 
 # From ADS "simple" example
-LIBS += -L$$PWD
+LIBS += -L.
 CONFIG(debug, debug|release){
     win32 {
         LIBS += -lqtadvanceddockingd
