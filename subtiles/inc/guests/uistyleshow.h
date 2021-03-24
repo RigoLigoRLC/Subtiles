@@ -1,7 +1,7 @@
-#ifndef STGUESTUISTYLESHOW_H
-#define STGUESTUISTYLESHOW_H
+#ifndef UISTYLESHOW_H
+#define UISTYLESHOW_H
 
-#include "app/subtilesabstractguest.h"
+#include "app/abstractguest.h"
 #include "ui_guest_uistyleshow.h"
 
 namespace Ui {
@@ -24,4 +24,4 @@ class STGuestUiStyleShow : public SubtilesAbstractGuest
     Ui::STGuestUiStyleShow *ui;
 };
 
-#endif // STGUESTUISTYLESHOW_H
+#endif // UISTYLESHOW_H

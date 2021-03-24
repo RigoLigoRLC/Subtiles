@@ -2,7 +2,7 @@
 #include <QTextStream>
 #include <QCloseEvent>
 
-#include "gui/subtilesmainwindow.h"
+#include "gui/mainwindow.h"
 
 
 SubtilesMainWindow::SubtilesMainWindow(QWidget *parent) :

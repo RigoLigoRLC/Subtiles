@@ -1,5 +1,5 @@
-#ifndef SUBTILESABSTRACTGUEST_H
-#define SUBTILESABSTRACTGUEST_H
+#ifndef ABSTRACTGUEST_H
+#define ABSTRACTGUEST_H
 
 #include <QWidget>
 #include "DockWidget.h"
@@ -21,4 +21,4 @@ class SubtilesAbstractGuest : public ads::CDockWidget
     QWidget *m_widget; ///< Real widget, convenience for UI designer designed ones
 };
 
-#endif // SUBTILESABSTRACTGUEST_H
+#endif // ABSTRACTGUEST_H

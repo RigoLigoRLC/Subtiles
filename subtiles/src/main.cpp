@@ -1,5 +1,5 @@
-#include "gui/subtilesmainwindow.h"
-#include "app/subtilesmainframe.h"
+#include "gui/mainwindow.h"
+#include "app/mainframe.h"
 #include <QApplication>
 #include <QSplashScreen>
 

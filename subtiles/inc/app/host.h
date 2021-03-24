@@ -1,5 +1,5 @@
-#ifndef SUBTILESHOST_H
-#define SUBTILESHOST_H
+#ifndef HOST_H
+#define HOST_H
 
 #include <QObject>
 #include <QMap>
@@ -11,4 +11,4 @@ class SubtilesHost final : public QObject
     ~SubtilesHost(){};
 };
 
-#endif // SUBTILESHOST_H
+#endif // HOST_H

@@ -1,12 +1,12 @@
-#ifndef SUBTILESMAINFRAME_H
-#define SUBTILESMAINFRAME_H
+#ifndef MAINFRAME_H
+#define MAINFRAME_H
 
 #include <QObject>
 #include <QList>
 #include <QMap>
-#include "subtileshost.h"
-#include "subtilesabstractguest.h"
-#include "gui/subtilesmainwindow.h"
+#include "host.h"
+#include "abstractguest.h"
+#include "gui/mainwindow.h"
 
 /*
 */
@@ -31,4 +31,4 @@ class SubtilesMainFrame final : public QObject
     ~SubtilesMainFrame();
 };
 
-#endif // SUBTILESMAINFRAME_H
+#endif // MAINFRAME_H

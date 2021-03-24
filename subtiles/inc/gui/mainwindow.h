@@ -1,9 +1,9 @@
-#ifndef SUBTILESMAINWINDOW_H
-#define SUBTILESMAINWINDOW_H
+#ifndef MAINWINDOW_H
+#define MAINWINDOW_H
 
 #include <QMainWindow>
 
-#include "app/subtilesmainframe.h"
+#include "app/mainframe.h"
 #include "DockManager.h"
 
 namespace Ui {
@@ -33,4 +33,4 @@ class SubtilesMainWindow : public QMainWindow
     ads::CDockManager *m_dockMgr;
 };
 
-#endif // SUBTILESMAINWINDOW_H
+#endif // MAINWINDOW_H

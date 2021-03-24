@@ -1,5 +1,5 @@
-#include "app/subtilesmainframe.h"
-#include "guests/stguestuistyleshow.h"
+#include "app/mainframe.h"
+#include "guests/uistyleshow.h"
 
 uint SubtilesMainFrame::CreateMainWindow()
 {

@@ -10,19 +10,19 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
-    src/app/subtilesmainframe.cpp \
+    src/app/mainframe.cpp \
     src/datatypes/STTimecode.cpp \
-    src/guests/stguestuistyleshow.cpp \
-        src/gui/subtilesmainwindow.cpp \
+    src/guests/uistyleshow.cpp \
+    src/gui/mainwindow.cpp \
         src/main.cpp
 
 HEADERS += \
-        inc/app/subtilesabstractguest.h \
-        inc/app/subtileshost.h \
-        inc/app/subtilesmainframe.h \
+        inc/app/abstractguest.h \
+        inc/app/host.h \
+        inc/app/mainframe.h \
         inc/datatypes/STTimecode.h \
-        inc/guests/stguestuistyleshow.h \
-        inc/gui/subtilesmainwindow.h
+        inc/guests/uistyleshow.h \
+        inc/gui/mainwindow.h
 
 FORMS += \
     ui/guest_uistyleshow.ui

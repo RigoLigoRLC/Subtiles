@@ -1,4 +1,4 @@
-#include "guests/stguestuistyleshow.h"
+#include "guests/uistyleshow.h"
 
 STGuestUiStyleShow::STGuestUiStyleShow(const QString &title, QWidget *parent) :
   SubtilesAbstractGuest(title, parent),
