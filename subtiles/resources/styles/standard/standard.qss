@@ -12,8 +12,8 @@ border: 1px solid #4e4e4e
 }
 QPushButton:hover {background-color:#2d2d2d; border:1px solid #6e6e6e}
 QPushButton:pressed {background-color:#555555}
-QPushButton:focus {background-color:#323232;border:1px solid #5a5a5a}
-QPushButton:focus:hover {background-color:#3a3a3a;border:1px solid #6e6e6e}
+QPushButton:focus {background-color:#3d3d3d;border:1px solid #5a5a5a}
+QPushButton:focus:hover {background-color:#484848;border:1px solid #6e6e6e}
 QPushButton:focus:pressed {background-color:#373737}
 
 QGroupBox
@@ -31,6 +31,10 @@ left: 10px
 
 QCheckBox::indicator {border-radius:0px; border:1px solid #555555;margin:1px}
 QCheckBox::indicator:hover {border-color: #6e6e6e}
+QCheckBox::indicator:pressed {border-color:#cccccc;background-color:#cccccc}
 QCheckBox::indicator:checked {image:url(styles/standard/svgs/checkbox-ticked.svg); background-color:#dddddd;border:0px;}
+QCheckBox::indicator:checked:hover {background-color:#cccccc}
+QCheckBox::indicator:checked:pressed {background-color:#eeeeee}
 
-QRadioButton::indicator {border:1px solid #555555}
+QRadioButton::indicator {image:url(styles/standard/svgs/radiobox-normal.svg);border:0px;}
+QRadioButton::indicator:checked {image:url(styles/standard/svgs/radiobox-checked.svg)}
