@@ -12,8 +12,10 @@ CONFIG += c++11
 SOURCES += \
     src/app/mainframe.cpp \
     src/datatypes/STTimecode.cpp \
+    src/guests/timeline.cpp \
     src/guests/uistyleshow.cpp \
     src/gui/mainwindow.cpp \
+    src/gui/timelineview.cpp \
         src/main.cpp
 
 HEADERS += \
@@ -21,8 +23,10 @@ HEADERS += \
         inc/app/host.h \
         inc/app/mainframe.h \
         inc/datatypes/STTimecode.h \
+        inc/guests/timeline.h \
         inc/guests/uistyleshow.h \
-        inc/gui/mainwindow.h
+        inc/gui/mainwindow.h \
+        inc/gui/timelineview.h
 
 FORMS += \
     ui/guest_uistyleshow.ui

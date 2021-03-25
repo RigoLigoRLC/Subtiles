@@ -10,6 +10,8 @@ STGuestUiStyleShow::STGuestUiStyleShow(const QString &title, QWidget *parent) :
   this->setWidget(m_widget);
 
   m_typeId = STGuestTypeID::UiShow;
+
+  connect(ui->pushButton_2, &QPushButton::clicked, this, &STGuestUiStyleShow::on_pushButton_2_clicked);
 }
 
 void STGuestUiStyleShow::on_pushButton_2_clicked()

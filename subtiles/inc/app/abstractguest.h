@@ -6,7 +6,8 @@
 
 enum class STGuestTypeID : int
 {
-  UiShow = 0
+  Invalid = -1,
+  UiShow, Timeline
 };
 
 class SubtilesAbstractGuest : public ads::CDockWidget
