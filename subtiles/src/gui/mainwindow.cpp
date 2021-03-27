@@ -1,6 +1,7 @@
 #include <QFile>
 #include <QTextStream>
 #include <QCloseEvent>
+#include <QDesktopWidget>
 
 #include "gui/mainwindow.h"
 
@@ -15,6 +16,7 @@ SubtilesMainWindow::SubtilesMainWindow(uint aMwid, QWidget *parent) :
   SubtilesMainWindow(parent)
 {
   m_mwid = aMwid;
+  resize(QDesktopWidget().availableGeometry(this).size() * 0.7);
 }
 
 SubtilesMainWindow::~SubtilesMainWindow()

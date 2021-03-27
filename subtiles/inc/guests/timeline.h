@@ -10,7 +10,7 @@ class STGuestTimeline : public SubtilesAbstractGuest
 {
     Q_OBJECT
   public:
-    STGuestTimeline(QWidget *parent);
+    STGuestTimeline(SubtilesMainFrame *frame, QWidget *parent);
     ~STGuestTimeline();
 
     STGuestTypeID GetGuestTypeID() override { return STGuestTypeID::Timeline; }
@@ -18,6 +18,9 @@ class STGuestTimeline : public SubtilesAbstractGuest
   private:
     STTimelineView *m_view;
     QGraphicsScene *m_scene;
+
+  private:
+    bool eventFilter(QObject*, QEvent*) override;
 };
 
 #endif // TIMELINE_H

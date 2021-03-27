@@ -11,9 +11,11 @@ CONFIG += c++11
 
 SOURCES += \
     src/app/mainframe.cpp \
+    src/datatypes/STDialog.cpp \
     src/datatypes/STTimecode.cpp \
     src/guests/timeline.cpp \
     src/guests/uistyleshow.cpp \
+    src/gui/dialogtile.cpp \
     src/gui/mainwindow.cpp \
     src/gui/timelineview.cpp \
         src/main.cpp
@@ -22,9 +24,11 @@ HEADERS += \
         inc/app/abstractguest.h \
         inc/app/host.h \
         inc/app/mainframe.h \
+        inc/datatypes/STDialog.h \
         inc/datatypes/STTimecode.h \
         inc/guests/timeline.h \
         inc/guests/uistyleshow.h \
+        inc/gui/dialogtile.h \
         inc/gui/mainwindow.h \
         inc/gui/timelineview.h
 

@@ -1,7 +1,7 @@
 #include "guests/uistyleshow.h"
 
-STGuestUiStyleShow::STGuestUiStyleShow(const QString &title, QWidget *parent) :
-  SubtilesAbstractGuest(title, parent),
+STGuestUiStyleShow::STGuestUiStyleShow(SubtilesMainFrame *frame, const QString &title, QWidget *parent) :
+  SubtilesAbstractGuest(frame, title, parent),
   ui(new Ui::STGuestUiStyleShow)
 {
   m_widget = new QWidget;

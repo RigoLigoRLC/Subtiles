@@ -4,63 +4,21 @@
 
 #include "STTimecode.h"
 
-STTimecode::STTimecode()
-{
-  m_second = 0;
-  m_fraction = 0.0;
-}
-
-STTimecode::STTimecode(const QString &s)
-{
-  if(!SetTimecode(s))
-    STTimecode();
-}
-
-STTimecode::STTimecode(const double s)
-{
-  if(!SetTimecode(s))
-    STTimecode();
-}
-
-STTimecode::STTimecode(const unsigned long s, const int fr)
-{
-  if(!SetTimecode(s, fr))
-    STTimecode();
-}
-
-STTimecode::STTimecode(const unsigned long s, const double fr)
-{
-  if(!SetTimecode(s, fr))
-    STTimecode();
-}
-
-STTimecode::STTimecode(const unsigned long h, const unsigned long m, const unsigned long s, const int fr)
-{
-  if(!SetTimecode(h, m, s, fr))
-    STTimecode();
-}
-
-STTimecode::STTimecode(const unsigned long h, const unsigned long m, const unsigned long s, const double fr)
-{
-  if(!SetTimecode(h, m, s, fr))
-    STTimecode();
-}
-
-QString STTimecode::GetASSTimecode() const
+QString STData::GetAssTimecode(const STTime t)
 {
   return QString("%1:%2:%3.%4")
-      .arg(m_second / 3600, 2, 10, QChar('0'))
-      .arg(m_second % 3600 / 60, 2, 10, QChar('0'))
-      .arg(m_second % 60, 2, 10, QChar('0'))
-      .arg(static_cast<long>(m_fraction * 10000), 4, 10, QChar('0'));
+      .arg(t / 3600000, 2, 10, QChar('0'))
+      .arg(t % 3600000 / 60000, 2, 10, QChar('0'))
+      .arg(t % 60000, 2, 10, QChar('0'))
+      .arg(t % 1000, 4, 10, QChar('0'));
 }
 
-bool STTimecode::SetTimecode(const QString &aTimecode)
+STTime STData::TimeFromAssTimecode(const QString &aTimecode)
 {
   QStringList argList = aTimecode.split(QRegExp("[\\.:]"));
   if(argList.size() != 4)
   {
-    return false;
+    return 0;
   }
 
   // Verify if is a valid timecode
@@ -71,154 +29,42 @@ bool STTimecode::SetTimecode(const QString &aTimecode)
     timecodeParts.append(i.toULong(&valid));
     if(!valid)
     {
-      return false;
+      return 0;
     }
   }
   if(timecodeParts[3] >= 10000)
   {
-    return false;
+    return 0;
   }
 
-  m_second = timecodeParts[0] * 3600 +
-             timecodeParts[1] * 60 +
-             timecodeParts[2];
-  m_fraction = static_cast<double>(timecodeParts[3]) / 1000;
-  return true;
+  return timecodeParts[0] * 3600000 +
+         timecodeParts[1] * 60000 +
+         timecodeParts[2] * 1000 +
+         timecodeParts[3];
 }
 
-bool STTimecode::SetTimecode(const double s)
+STTime STData::TimeFromSeconds(const double s)
 {
-  if(s < 0)
+  if(s < 0 || s > static_cast<double>(ULONG_LONG_MAX))
+  {
+    return 0;
+  }
+  return static_cast<STTime>(s * 1000);
+}
+
+STTime STData::TimeFromTime(const unsigned int h, const unsigned int m, const unsigned int s, const unsigned int fr)
+{
+  if(fr >= 10000)
   {
     return false;
   }
-  m_second = s;
-  m_fraction = static_cast<double>(qRound(fmod(s, 1) * 10000)) / 10000;
-  return true;
+  return h * 3600000 +
+         m * 60000 +
+         s * 1000 +
+         fr;
 }
 
-bool STTimecode::SetTimecode(const unsigned long s, const int fr)
-{
-  if(fr >= 10000 || fr < 0)
-  {
-    return false;
-  }
-  m_second = s;
-  m_fraction = static_cast<double>(fr) / 10000;
-  return true;
-}
-
-bool STTimecode::SetTimecode(const unsigned long s, const double fr)
-{
-  if(fr >= 1 || fr < 0)
-  {
-    return false;
-  }
-  m_second = s;
-  m_fraction = static_cast<double>(qRound(fr * 10000)) / 10000;
-  return true;
-}
-
-bool STTimecode::SetTimecode(const unsigned long h, const unsigned long m, const unsigned long s, const int fr)
-{
-  if(fr >= 10000 || fr < 0)
-  {
-    return false;
-  }
-  m_second = h * 3600 +
-             m * 60 +
-             s;
-  m_fraction = static_cast<double>(fr) / 10000;
-  return true;
-}
-
-bool STTimecode::SetTimecode(const unsigned long h, const unsigned long m, const unsigned long s, const double fr)
-{
-  if(fr >= 1 || fr < 0)
-  {
-    return false;
-  }
-  m_second = h * 3600 +
-             m * 60 +
-             s;
-  m_fraction = static_cast<double>(qRound(fr * 10000)) / 10000;
-  return true;
-}
-
-STTimecode STTimecode::operator+(const STTimecode &op)
-{
-  STTimecode ret;
-  double orig = static_cast<double>(this->m_second) + this->m_fraction,
-         oper = static_cast<double>(op.m_second) + op.m_fraction;
-  ret.SetTimecode(orig + oper);
-  return ret;
-}
-
-STTimecode STTimecode::operator-(const STTimecode &op)
-{
-  STTimecode ret;
-  double orig = static_cast<double>(this->m_second) + this->m_fraction,
-         oper = static_cast<double>(op.m_second) + op.m_fraction;
-  if(oper > orig)
-  {
-    ret.SetTimecode(0);
-    return ret;
-  }
-  ret.SetTimecode(orig - oper);
-  return ret;
-}
-
-STTimecode STTimecode::operator*(const double op)
-{
-  STTimecode ret;
-  if(op < 0)
-  {
-    return ret;
-  }
-  ret.SetTimecode((static_cast<double>(this->m_second) + this->m_fraction) * op);
-  return ret;
-}
-
-STTimecode STTimecode::operator/(const double op)
-{
-  STTimecode ret;
-  ret.SetTimecode((static_cast<double>(this->m_second) + this->m_fraction) / op);
-  return ret;
-}
-
-bool STTimecode::operator==(const STTimecode &op)
-{
-  return this->m_second == op.m_second && qFuzzyCompare(this->m_fraction, op.m_fraction);
-}
-
-bool STTimecode::operator>(const STTimecode &op)
-{
-  return static_cast<double>(this->m_second) + this->m_fraction > static_cast<double>(op.m_second) + op.m_fraction;
-}
-
-bool STTimecode::operator<=(const STTimecode &op)
-{
-  return static_cast<double>(this->m_second) + this->m_fraction <= static_cast<double>(op.m_second) + op.m_fraction;
-}
-
-
-bool STTimecode::operator>=(const STTimecode &op)
-{
-  return static_cast<double>(this->m_second) + this->m_fraction >= static_cast<double>(op.m_second) + op.m_fraction;
-}
-
-bool STTimecode::operator<(const STTimecode &op)
-{
-  return static_cast<double>(this->m_second) + this->m_fraction < static_cast<double>(op.m_second) + op.m_fraction;
-}
-
-unsigned long STTimecode::ToFrame(const double aFps)
-{
-  return qRound((m_second + m_fraction) / aFps);
-}
-
-
-bool STTimecode::IsValidTimecode(const QString &aTimecode)
+bool STData::VerifyTimecode(const QString &aTimecode)
 {
   QStringList argList = aTimecode.split(QRegExp("[\\.:]"));
   if(argList.size() != 4)

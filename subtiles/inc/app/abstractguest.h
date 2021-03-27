@@ -4,6 +4,8 @@
 #include <QWidget>
 #include "DockWidget.h"
 
+class SubtilesMainFrame;
+
 enum class STGuestTypeID : int
 {
   Invalid = -1,
@@ -14,12 +16,14 @@ class SubtilesAbstractGuest : public ads::CDockWidget
 {
   Q_OBJECT
   public:
-    SubtilesAbstractGuest(const QString &title, QWidget *parent) : ads::CDockWidget(title, parent) {};
+    SubtilesAbstractGuest(SubtilesMainFrame *frame, const QString &title, QWidget *parent) :
+      ads::CDockWidget(title, parent) { m_frame = frame; };
     virtual STGuestTypeID GetGuestTypeID() = 0;
 
   protected:
     STGuestTypeID m_typeId;
     QWidget *m_widget; ///< Real widget, convenience for UI designer designed ones
+    SubtilesMainFrame *m_frame;
 };
 
 #endif // ABSTRACTGUEST_H

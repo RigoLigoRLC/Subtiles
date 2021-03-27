@@ -12,7 +12,7 @@ class STGuestUiStyleShow : public SubtilesAbstractGuest
 {
     Q_OBJECT
   public:
-    explicit STGuestUiStyleShow(const QString &title, QWidget *parent = nullptr);
+    explicit STGuestUiStyleShow(SubtilesMainFrame *frame, const QString &title, QWidget *parent = nullptr);
     ~STGuestUiStyleShow();
 
     STGuestTypeID GetGuestTypeID() override { return m_typeId; }

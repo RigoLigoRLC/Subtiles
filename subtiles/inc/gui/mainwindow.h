@@ -3,7 +3,6 @@
 
 #include <QMainWindow>
 
-#include "app/mainframe.h"
 #include "DockManager.h"
 
 namespace Ui {

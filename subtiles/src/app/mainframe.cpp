@@ -20,6 +20,7 @@ void SubtilesMainFrame::evtMainWindowDestroyed(uint aWho)
 
 SubtilesMainFrame::SubtilesMainFrame()
 {
+  QObject();
   // Initialize internals
   m_mwidTop = 0;
 
@@ -29,8 +30,8 @@ SubtilesMainFrame::SubtilesMainFrame()
 
   // Populate dock widgets (guests)
   {
-    m_guests.push_back(new STGuestUiStyleShow("UI Style Show", window));
-    m_guests.push_back(new STGuestTimeline(window));
+    m_guests.push_back(new STGuestUiStyleShow(this, "UI Style Show", window));
+    m_guests.push_back(new STGuestTimeline(this, window));
   }
   foreach(auto &i, m_guests)
     window->AddDockWidget(ads::TopDockWidgetArea, i);
@@ -45,4 +46,3 @@ SubtilesMainFrame::~SubtilesMainFrame()
     i->deleteLater(); // Guests will be destoryed along with the window
   m_host->deleteLater();
 }
-
