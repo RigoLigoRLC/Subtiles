@@ -43,6 +43,6 @@ SubtilesMainFrame::~SubtilesMainFrame()
   // When mainframe is destroyed, the application is effectively quitting.
   // No need to worry about data safety while painting; just delete them all.
   foreach(auto &i, m_windows)
-    i->deleteLater(); // Guests will be destoryed along with the window
-  m_host->deleteLater();
+    delete i; // Guests will be destoryed along with the window
+  // Host is a child of main frame so it's Qt object tree destroying it
 }
