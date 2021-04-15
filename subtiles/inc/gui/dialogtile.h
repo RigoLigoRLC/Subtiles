@@ -11,7 +11,6 @@
 class STDialogTileItem : public QGraphicsRectItem
 {
   public:
-    STDialogTileItem();
     STDialogTileItem(std::shared_ptr<STDialog>);
 
     void RecomputeRect();

@@ -1,6 +1,7 @@
 #ifndef STDIALOG_H
 #define STDIALOG_H
 
+#include <QSharedPointer>
 #include "STTimecode.h"
 
 struct STDialog
@@ -10,5 +11,7 @@ struct STDialog
     STTime begin, duration; ///< Timespan for this line
 
 };
+
+using STDialogPtr = QSharedPointer<STDialog>;
 
 #endif // STDIALOG_H

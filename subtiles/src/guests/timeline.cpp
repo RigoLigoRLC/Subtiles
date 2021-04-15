@@ -10,6 +10,9 @@ STGuestTimeline::STGuestTimeline(SubtilesMainFrame *frame, QWidget *parent) :
   m_view = new STTimelineView(this);
   m_scene = new QGraphicsScene(this);
   m_view->setScene(m_scene);
+  qInfo() << m_scene->sceneRect();
+  m_scene->setSceneRect(0, 0, 40, 40);
+  qInfo() << m_scene->sceneRect();
 
   m_view->viewport()->installEventFilter(this);
 

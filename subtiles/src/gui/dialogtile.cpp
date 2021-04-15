@@ -4,12 +4,6 @@
 
 double STDialogTileItem::scaleFac = 1;
 
-STDialogTileItem::STDialogTileItem() :
-  m_dialog(std::make_shared<STDialog>())
-{
-  setFlags(GraphicsItemFlag::ItemClipsChildrenToShape | GraphicsItemFlag::ItemIgnoresTransformations);
-}
-
 STDialogTileItem::STDialogTileItem(std::shared_ptr<STDialog> aDialog) :
   m_text(this)
 {
@@ -19,6 +13,11 @@ STDialogTileItem::STDialogTileItem(std::shared_ptr<STDialog> aDialog) :
   QPen p = pen();
   p.setCosmetic(true); // Cosmetic Pen is always 1px, borders shouldn't be zoomed
   setPen(p);
+  QBrush b = brush();
+  b.setColor(QColor(200, 100, 100, 192));
+  b.setStyle(Qt::BrushStyle::SolidPattern);
+  setBrush(b);
+  setPos(-2, -2);
   RecomputeRect();
 }
 

@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "DockWidget.h"
+#include "app/commander.h"
 
 class SubtilesMainFrame;
 
@@ -24,6 +25,7 @@ class SubtilesAbstractGuest : public ads::CDockWidget
     STGuestTypeID m_typeId;
     QWidget *m_widget; ///< Real widget, convenience for UI designer designed ones
     SubtilesMainFrame *m_frame;
+    SubtilesCommander *m_cmd;
 };
 
 #endif // ABSTRACTGUEST_H

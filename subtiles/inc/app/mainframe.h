@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QList>
 #include <QMap>
+#include <QScopedPointer>
 #include "host.h"
 #include "abstractguest.h"
 #include "gui/mainwindow.h"

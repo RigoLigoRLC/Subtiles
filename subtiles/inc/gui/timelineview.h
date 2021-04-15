@@ -9,6 +9,7 @@ class STTimelineView : public QGraphicsView
   public:
     STTimelineView(QWidget *parent);
     void Scale(double x, double y);
+
   private:
 
 };
