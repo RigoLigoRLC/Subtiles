@@ -1,6 +1,7 @@
 #include "guests/uistyleshow.h"
 
-STGuestUiStyleShow::STGuestUiStyleShow(SubtilesMainFrame *frame, const QString &title, QWidget *parent) :
+STGuestUiStyleShow::STGuestUiStyleShow(SubtilesMainFrame *frame,
+                                       const QString &title, QWidget *parent) :
   SubtilesAbstractGuest(frame, title, parent),
   ui(new Ui::STGuestUiStyleShow)
 {
@@ -11,7 +12,8 @@ STGuestUiStyleShow::STGuestUiStyleShow(SubtilesMainFrame *frame, const QString &
 
   m_typeId = STGuestTypeID::UiShow;
 
-  connect(ui->pushButton_2, &QPushButton::clicked, this, &STGuestUiStyleShow::on_pushButton_2_clicked);
+  connect(ui->pushButton_2, &QPushButton::clicked,
+          this, &STGuestUiStyleShow::on_pushButton_2_clicked);
 }
 
 void STGuestUiStyleShow::on_pushButton_2_clicked()

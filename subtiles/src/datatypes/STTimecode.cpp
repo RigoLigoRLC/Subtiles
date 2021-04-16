@@ -52,7 +52,8 @@ STTime STData::TimeFromSeconds(const double s)
   return static_cast<STTime>(s * 1000);
 }
 
-STTime STData::TimeFromTime(const unsigned int h, const unsigned int m, const unsigned int s, const unsigned int fr)
+STTime STData::TimeFromTime(const unsigned int h, const unsigned int m,
+                            const unsigned int s, const unsigned int fr)
 {
   if(fr >= 10000)
   {

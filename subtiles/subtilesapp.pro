@@ -10,9 +10,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+    src/app/command.cpp \
     src/app/commander.cpp \
     src/app/host.cpp \
     src/app/mainframe.cpp \
+    src/datatypes/STDataOperator.cpp \
     src/datatypes/STDialog.cpp \
     src/datatypes/STTimecode.cpp \
     src/datatypes/STTrack.cpp \
@@ -25,9 +27,11 @@ SOURCES += \
 
 HEADERS += \
         inc/app/abstractguest.h \
+        inc/app/command.h \
         inc/app/commander.h \
         inc/app/host.h \
         inc/app/mainframe.h \
+        inc/datatypes/STDataOperator.h \
         inc/datatypes/STDialog.h \
         inc/datatypes/STTimecode.h \
         inc/datatypes/STTrack.h \
@@ -35,7 +39,8 @@ HEADERS += \
         inc/guests/uistyleshow.h \
         inc/gui/dialogtile.h \
         inc/gui/mainwindow.h \
-        inc/gui/timelineview.h
+        inc/gui/timelineview.h \
+        inc/utils/convenience.h
 
 FORMS += \
     ui/guest_uistyleshow.ui

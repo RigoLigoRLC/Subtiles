@@ -12,6 +12,7 @@
 class SubtilesCommander : public QObject
 {
     Q_OBJECT
+
   public:
     SubtilesCommander(QHash<uint, STDialogPtr> &, std::list<STTrackPtr> &);
 

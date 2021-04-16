@@ -2,12 +2,15 @@
 #include "guests/uistyleshow.h"
 #include "guests/timeline.h"
 
+SubtilesMainFrame *STDataOperator::m_frame = nullptr; // Initialization
+
 uint SubtilesMainFrame::CreateMainWindow()
 {
   Q_ASSERT(m_mwidTop < UINT32_MAX); // This would not happen to a normal user :p
   SubtilesMainWindow *window = new SubtilesMainWindow(m_mwidTop, nullptr);
   m_windows[m_mwidTop] = window;
-  connect(window, &SubtilesMainWindow::sigWindowClosed, this, &SubtilesMainFrame::evtMainWindowDestroyed);
+  connect(window, &SubtilesMainWindow::sigWindowClosed,
+          this, &SubtilesMainFrame::evtMainWindowDestroyed);
   window->show();
   return m_mwidTop++;
 }
@@ -20,6 +23,10 @@ void SubtilesMainFrame::evtMainWindowDestroyed(uint aWho)
 
 SubtilesMainFrame::SubtilesMainFrame()
 {
+  // Provide interface for unsafe data operators
+  Q_ASSERT(STDataOperator::m_frame == nullptr);
+  STDataOperator::m_frame = this;
+
   QObject();
   // Initialize internals
   m_mwidTop = 0;
