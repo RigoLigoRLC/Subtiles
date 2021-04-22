@@ -33,8 +33,13 @@
 
 # Qt user project settings
 subtiles/subtiles.pro.user*
+
 # build directory
 build/
 subtiles.pro.user*
 .vscode
 *.kdev4
+
+# ccls
+compile_commands.json
+.ccls-cache
