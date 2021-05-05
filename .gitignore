@@ -41,5 +41,5 @@ subtiles.pro.user*
 *.kdev4
 
 # ccls
-compile_commands.json
+compile_commands.json_
 .ccls-cache

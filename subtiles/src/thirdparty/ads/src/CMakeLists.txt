@@ -1,116 +1,90 @@
-cmake_minimum_required(VERSION 3.5)
-project(QtAdvancedDockingSystem LANGUAGES CXX VERSION ${VERSION_SHORT})
-find_package(Qt5 5.5 COMPONENTS Core Gui Widgets REQUIRED)
-if (UNIX AND NOT APPLE)
-	find_package(Qt5 5.5 COMPONENTS X11Extras REQUIRED)
-endif()
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
-if(BUILD_STATIC)
-    set(CMAKE_STATIC_LIBRARY_SUFFIX "_static${CMAKE_STATIC_LIBRARY_SUFFIX}")
-endif()
-set(ads_SRCS
-    ads_globals.cpp
-    DockAreaTabBar.cpp
-    DockAreaTitleBar.cpp
-    DockAreaWidget.cpp
-    DockContainerWidget.cpp
-    DockManager.cpp
-    DockOverlay.cpp
-    DockSplitter.cpp
-    DockWidget.cpp
-    DockWidgetTab.cpp
-    DockingStateReader.cpp
-    DockFocusController.cpp
-    ElidingLabel.cpp
-    FloatingDockContainer.cpp
-    FloatingDragPreview.cpp
-    IconProvider.cpp
-    DockComponentsFactory.cpp
-    ads.qrc
-)
-set(ads_HEADERS
-    ads_globals.h
-    DockAreaTabBar.h
-    DockAreaTitleBar.h
-    DockAreaTitleBar_p.h
-    DockAreaWidget.h
-    DockContainerWidget.h
-    DockManager.h
-    DockOverlay.h
-    DockSplitter.h
-    DockWidget.h
-    DockWidgetTab.h
-    DockingStateReader.h
-    DockFocusController.h
-    ElidingLabel.h
-    FloatingDockContainer.h
-    FloatingDragPreview.h
-    IconProvider.h
-    DockComponentsFactory.h
-)
-add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")
-if (UNIX AND NOT APPLE)
-    set(ads_SRCS linux/FloatingWidgetTitleBar.cpp ${ads_SRCS})
-    set(ads_HEADERS linux/FloatingWidgetTitleBar.h ${ads_HEADERS})
-endif()
-if(BUILD_STATIC)
-    add_library(qtadvanceddocking STATIC ${ads_SRCS} ${ads_HEADERS})
-    target_compile_definitions(qtadvanceddocking PUBLIC ADS_STATIC)
-else()
-    add_library(qtadvanceddocking SHARED ${ads_SRCS} ${ads_HEADERS})
-    target_compile_definitions(qtadvanceddocking PRIVATE ADS_SHARED_EXPORT)
-endif()
-target_link_libraries(qtadvanceddocking PUBLIC Qt5::Core Qt5::Gui Qt5::Widgets)
-if(UNIX AND NOT APPLE)
-    target_link_libraries(qtadvanceddocking PUBLIC Qt5::X11Extras)
-	target_link_libraries(qtadvanceddocking PRIVATE xcb)
-endif()
-set_target_properties(qtadvanceddocking PROPERTIES 
-    AUTOMOC ON
-    AUTORCC ON
-    CXX_STANDARD 14
-    CXX_STANDARD_REQUIRED ON
-    CXX_EXTENSIONS OFF
-    VERSION ${VERSION_SHORT}
-    EXPORT_NAME "qtadvanceddocking"
-    ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/${ads_PlatformDir}/lib"
-    LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/${ads_PlatformDir}/lib"
-    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/${ads_PlatformDir}/bin"
-)
-include(CMakePackageConfigHelpers)
-write_basic_package_version_file(
-    "qtadvanceddockingConfigVersion.cmake"
-    VERSION ${VERSION_SHORT}
-    COMPATIBILITY SameMajorVersion
-)
-install(FILES ${ads_HEADERS}
-    DESTINATION include 
-    COMPONENT headers
-)
-install(FILES 
-    "${CMAKE_SOURCE_DIR}/LICENSE"
-    "${CMAKE_SOURCE_DIR}/gnu-lgpl-v2.1.md"
-    DESTINATION license 
-    COMPONENT license
-)
-install(TARGETS qtadvanceddocking
-    EXPORT adsTargets
-    RUNTIME DESTINATION bin
-    LIBRARY DESTINATION lib
-    ARCHIVE DESTINATION lib
-    INCLUDES DESTINATION include
+# Generated from src.pro.
+
+#####################################################################
+## qtadvanceddocking Generic Library:
+#####################################################################
+
+find_package(Qt5 COMPONENTS Core Gui Widgets REQUIRED)
+
+add_definitions(-DADS_SHARED_EXPORT -DQT_DEPRECATED_WARNINGS)
+
+# Resources:
+set(ads_resource_files
+    "images/close-button-disabled.svg"
+    "images/close-button-focused.svg"
+    "images/close-button.svg"
+    "images/detach-button-disabled.svg"
+    "images/detach-button.svg"
+    "images/maximize-button-focused.svg"
+    "images/maximize-button.svg"
+    "images/restore-button-focused.svg"
+    "images/restore-button.svg"
+    "images/tabs-menu-button.svg"
+    "stylesheets/default.css"
+    "stylesheets/default_linux.css"
+    "stylesheets/focus_highlighting.css"
+    "stylesheets/focus_highlighting_linux.css"
 )
 
-install(EXPORT adsTargets
-    FILE adsTargets.cmake
-    NAMESPACE ads::
-    DESTINATION lib/cmake/qtadvanceddocking
-)
-install(FILES qtadvanceddockingConfig.cmake "${CMAKE_CURRENT_BINARY_DIR}/qtadvanceddockingConfigVersion.cmake"
-    DESTINATION lib/cmake/qtadvanceddocking
-)
+file(GLOB_RECURSE RESOURCES *.qrc)
+set(SOURCES ${SOURCES} ${RESOURCES})
 
-target_include_directories(qtadvanceddocking PUBLIC
-    $<INSTALL_INTERFACE:include>
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
-)
+#### Keys ignored in scope 1:.:.:src.pro:<TRUE>:
+# ADS_OUT_ROOT = "../../../../"
+# DISTFILES = <EMPTY>
+# INSTALLS = "headers" "target"
+# TEMPLATE = "lib"
+# headers.files = "$$HEADERS"
+# headers.path = "$$PREFIX/include"
+# target.path = "$$PREFIX/lib"
+
+## Scopes:
+#####################################################################
+
+IF(GCC AND WIN32)
+    add_compile_options(-Wall -Wextra -pedantic)
+ENDIF()
+
+IF(MSVC)
+    add_compile_options(/utf-8)
+ENDIF()
+
+IF(UNIX AND NOT APPLE)
+    set(SOURCES
+
+            ${SOURCES}
+            linux/FloatingWidgetTitleBar.cpp linux/FloatingWidgetTitleBar.h
+
+        )
+
+    find_package(Qt5 COMPONENTS X11Extras REQUIRED)
+    include(FindX11)
+ENDIF()
+
+add_library(qtadvanceddocking SHARED
+        DockAreaTabBar.cpp DockAreaTabBar.h
+        DockAreaTitleBar.cpp DockAreaTitleBar.h DockAreaTitleBar_p.h
+        DockAreaWidget.cpp DockAreaWidget.h
+        DockComponentsFactory.cpp DockComponentsFactory.h
+        DockContainerWidget.cpp DockContainerWidget.h
+        DockFocusController.cpp DockFocusController.h
+        DockManager.cpp DockManager.h
+        DockOverlay.cpp DockOverlay.h
+        DockSplitter.cpp DockSplitter.h
+        DockWidget.cpp DockWidget.h
+        DockWidgetTab.cpp DockWidgetTab.h
+        DockingStateReader.cpp DockingStateReader.h
+        ElidingLabel.cpp ElidingLabel.h
+        FloatingDockContainer.cpp FloatingDockContainer.h
+        FloatingDragPreview.cpp FloatingDragPreview.h
+        IconProvider.cpp IconProvider.h
+        ads_globals.cpp ads_globals.h
+        ${SOURCES}
+        )
+
+target_link_libraries(qtadvanceddocking Qt5::X11Extras Qt5::Widgets)
+
+target_include_directories(qtadvanceddocking PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+
+#### Keys ignored in scope 6:.:.:src.pro:PREFIX_ISEMPTY:
+# PREFIX = "../installed"
