@@ -15,6 +15,7 @@ SOURCES += \
     src/app/host.cpp \
     src/app/mainframe.cpp \
     src/datatypes/STDataOperator.cpp \
+    src/datatypes/STDataReader.cpp \
     src/datatypes/STDialog.cpp \
     src/datatypes/STTimecode.cpp \
     src/datatypes/STTrack.cpp \
@@ -32,7 +33,9 @@ HEADERS += \
         inc/app/host.h \
         inc/app/mainframe.h \
         inc/datatypes/STDataOperator.h \
+        inc/datatypes/STDataReader.h \
         inc/datatypes/STDialog.h \
+        inc/datatypes/STStyle.h \
         inc/datatypes/STTimecode.h \
         inc/datatypes/STTrack.h \
         inc/guests/timeline.h \

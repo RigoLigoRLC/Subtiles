@@ -1,4 +1,5 @@
 #include "app/host.h"
+#include "STDataReader.h"
 
 SubtilesHost *STDataOperator::m_host = nullptr; ///< Initialize with nullptr
 
@@ -9,4 +10,7 @@ SubtilesHost::SubtilesHost() :
   // Provide interface for unsafe data operators
   Q_ASSERT(STDataOperator::m_host == nullptr); // Ensure single instance
   STDataOperator::m_host = this;
+  // Provide interface for safe data readers
+  STDataReader::m_tracks = &m_tracks;
+  STDataReader::m_dialogs = &m_dialogs;
 }

@@ -10,11 +10,11 @@
 
 // Host *MUST* be single instance in one application.
 /**
- * @brief SubtilesHost class hosts everything in a Subtiles instance. It's
- *        designed to be a monolithic monster, contains all the data of this
- *        session and a commander that should be the only guy modifying data.
- *        Any data modification must be done by commander: you signal commander
- *        and it creates a command which does the data modification for you.
+ * @brief SubtilesHost class hosts everything in a Subtiles instance. It's designed to be
+ *        a monolithic monster, contains all the data of this session and a commander that should
+ *        be the only guy modifying data.
+ *        Any data modification must be done by commander: you signal commander and it creates
+ *        a command which in turn does the data modification for you.
  *        See inc/app/command.h and src/app/command.cpp for implementation.
  *        One should use signals starting with MsgNotify to notify Guests about
  *        the changes of data.

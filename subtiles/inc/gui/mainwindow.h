@@ -16,7 +16,7 @@ class SubtilesMainWindow : public QMainWindow
   public:
     explicit SubtilesMainWindow(QWidget *parent = nullptr);
     explicit SubtilesMainWindow(uint aMwid, QWidget *parent = nullptr);
-    virtual ~SubtilesMainWindow();
+    ~SubtilesMainWindow() override;
 
     void AddDockWidget(ads::DockWidgetArea a, ads::CDockWidget *w);
 

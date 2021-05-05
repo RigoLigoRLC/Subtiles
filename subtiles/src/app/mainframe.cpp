@@ -7,7 +7,7 @@ SubtilesMainFrame *STDataOperator::m_frame = nullptr; // Initialization
 uint SubtilesMainFrame::CreateMainWindow()
 {
   Q_ASSERT(m_mwidTop < UINT32_MAX); // This would not happen to a normal user :p
-  SubtilesMainWindow *window = new SubtilesMainWindow(m_mwidTop, nullptr);
+  auto *window = new SubtilesMainWindow(m_mwidTop, nullptr);
   m_windows[m_mwidTop] = window;
   connect(window, &SubtilesMainWindow::sigWindowClosed,
           this, &SubtilesMainFrame::evtMainWindowDestroyed);
@@ -27,12 +27,11 @@ SubtilesMainFrame::SubtilesMainFrame()
   Q_ASSERT(STDataOperator::m_frame == nullptr);
   STDataOperator::m_frame = this;
 
-  QObject();
   // Initialize internals
   m_mwidTop = 0;
 
   // Initialize application
-  int firstWindowID = CreateMainWindow(); // First main window for the app
+  uint firstWindowID = CreateMainWindow(); // First main window for the app
   auto window = m_windows[firstWindowID];
 
   // Populate dock widgets (guests)

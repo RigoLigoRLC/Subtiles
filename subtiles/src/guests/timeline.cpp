@@ -23,9 +23,9 @@ STGuestTimeline::STGuestTimeline(SubtilesMainFrame *frame, QWidget *parent) :
   for(int i = 0; i < 5; i++)
   {
     auto a = std::make_shared<STDialog>();
-    a->begin = i * 50000;
-    a->duration = 50000;
-    a->text = QString("Text%1").arg(i);
+    a->Begin = i * 50000;
+    a->Duration = 50000;
+    a->Text = QString("Text%1").arg(i);
     m_scene->addItem(new STDialogTileItem(a));
   }
 

@@ -45,7 +45,7 @@ class SubtilesMainFrame final : public QObject
 
   public:
     SubtilesMainFrame();
-    ~SubtilesMainFrame();
+    virtual ~SubtilesMainFrame();
 };
 
 #endif // MAINFRAME_H

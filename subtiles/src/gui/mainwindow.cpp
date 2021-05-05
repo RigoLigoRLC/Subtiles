@@ -29,7 +29,8 @@ void SubtilesMainWindow::closeEvent(QCloseEvent *e)
   e->accept();
 }
 
-void SubtilesMainWindow::AddDockWidget(ads::DockWidgetArea aArea, ads::CDockWidget *widget)
+void SubtilesMainWindow::AddDockWidget(ads::DockWidgetArea aArea,
+                                       ads::CDockWidget *widget)
 {
   m_dockMgr->addDockWidget(aArea, widget);
 }

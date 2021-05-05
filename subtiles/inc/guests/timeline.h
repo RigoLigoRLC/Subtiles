@@ -5,8 +5,9 @@
 
 #include "guests/uistyleshow.h"
 #include "gui/timelineview.h"
+#include "STDataReader.h"
 
-class STGuestTimeline : public SubtilesAbstractGuest
+class STGuestTimeline : public SubtilesAbstractGuest, public STDataReader
 {
     Q_OBJECT
   public:

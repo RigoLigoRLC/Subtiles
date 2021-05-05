@@ -9,10 +9,9 @@ class SubtilesHost;
 class SubtilesMainFrame;
 
 /**
- * @brief STDataOperator is NOT meant to be constructed; only meant to be
- *        inherited by other classes. If a class is an STDataOperator, it will
- *        gain access to the Host and MainFrame instance, and Tracks, Dialogs
- *        getters, thus being enabled to manipulate data.
+ * @brief STDataOperator is NOT meant to be constructed; only meant to be inherited by other
+ *        classes. If a class is an STDataOperator, it will gain access to the Host and MainFrame
+ *        instance, and Tracks, Dialogs getters, thus being enabled to manipulate data.
  */
 class STDataOperator
 {
