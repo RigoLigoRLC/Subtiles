@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/info">
+        <file>info/lipsum.txt</file>
+    </qresource>
+</RCC>

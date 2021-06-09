@@ -4,7 +4,7 @@
 #include <QGraphicsScene>
 
 #include "guests/uistyleshow.h"
-#include "gui/timelineview.h"
+#include "graphics/timelineview.h"
 #include "STDataReader.h"
 
 class STGuestTimeline : public SubtilesAbstractGuest, public STDataReader

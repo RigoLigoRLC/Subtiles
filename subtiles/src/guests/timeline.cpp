@@ -1,7 +1,7 @@
 #include <QWheelEvent>
 #include <QtMath>
 #include "guests/timeline.h"
-#include "gui/dialogtile.h"
+#include "graphics/dialogtile.h"
 #include "app/mainframe.h"
 
 STGuestTimeline::STGuestTimeline(SubtilesMainFrame *frame, QWidget *parent) :
@@ -20,13 +20,21 @@ STGuestTimeline::STGuestTimeline(SubtilesMainFrame *frame, QWidget *parent) :
 
   m_scene->setBackgroundBrush(QBrush(QColor(32, 32, 32)));
 
-  for(int i = 0; i < 5; i++)
+  QFile Lipsum;
+  Lipsum.setFileName(":/info/info/lipsum.txt");
+  Lipsum.open(QIODevice::ReadOnly);
+  if(Lipsum.isOpen())
   {
-    auto a = std::make_shared<STDialog>();
-    a->Begin = i * 50000;
-    a->Duration = 50000;
-    a->Text = QString("Text%1").arg(i);
-    m_scene->addItem(new STDialogTileItem(a));
+    int i = 0;
+    while(!Lipsum.atEnd())
+    {
+      auto a = std::make_shared<STDialog>();
+      a->Begin = i * 50000;
+      a->Duration = 50000;
+      a->Text = Lipsum.readLine();
+      m_scene->addItem(new STDialogTileItem(a));
+      i++;
+    }
   }
 
 

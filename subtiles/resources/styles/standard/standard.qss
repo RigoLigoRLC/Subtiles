@@ -1,6 +1,6 @@
 /* main principle from former Microsoft fluent design. */
 QMainWindow {background-color:#202020}
-QAbstractScrollArea {background-color:#202020; border:1px solid #4e4e4e}
+QAbstractScrollArea {background-color:#202020}
 
 QSplitter::handle{margin:0px 2px}
 

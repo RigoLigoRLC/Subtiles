@@ -2,8 +2,8 @@
 #include <QStyle>
 #include <QPen>
 
-#include "gui/timelineview.h"
-#include "gui/dialogtile.h"
+#include "graphics/timelineview.h"
+#include "graphics/dialogtile.h"
 
 STTimelineView::STTimelineView(QWidget *parent) :
   QGraphicsView(parent)
@@ -12,11 +12,15 @@ STTimelineView::STTimelineView(QWidget *parent) :
   setAlignment(Qt::AlignTop | Qt::AlignLeft);
   setTransformationAnchor(QGraphicsView::ViewportAnchor::AnchorUnderMouse);
   setContentsMargins(-2, -2, -2, -2);
+
+  Q_ASSERT(STDialogTileItem::s_view == nullptr);
+  STDialogTileItem::s_view = this; // Tell tiles about the view
 }
 
 void STTimelineView::Scale(double x, double y)
 {
   //resetTransform();
   scale(x, y);
-  STDialogTileItem::scaleFac = x;
+  STDialogTileItem::scaleX *= x;
+  STDialogTileItem::scaleY *= y;
 }
