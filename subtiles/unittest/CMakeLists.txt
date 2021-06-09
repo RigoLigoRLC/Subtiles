@@ -1,0 +1,2 @@
+add_subdirectory(datatypes_test)
+add_subdirectory(snaptree_test)
