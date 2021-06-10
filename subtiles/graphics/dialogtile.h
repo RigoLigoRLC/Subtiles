@@ -6,6 +6,7 @@
 #include <QPen>
 #include <QScopedPointer>
 #include "STDialog.h"
+#include "graphics/timelineview.h"
 
 class STDialogTileItem : public QGraphicsRectItem
 {
@@ -14,7 +15,7 @@ class STDialogTileItem : public QGraphicsRectItem
 
     void RecomputeRect();
 
-    static double scaleFac;
+    static double scaleX, scaleY;
 
   private:
     void paint(QPainter *, const QStyleOptionGraphicsItem *,
@@ -24,6 +25,13 @@ class STDialogTileItem : public QGraphicsRectItem
     QGraphicsTextItem m_text;
     STDialogCPtr m_dialog; ///< Associated dialog with this tile being displayed
     QScopedPointer<QPen> m_pen;
+    QColor m_bgcolor;
+
+    static STTimelineView *s_view; ///< Set by only view on initialization
+    friend class STTimelineView;
+
+  private:
+    static constexpr int TextLodWidthThreshold = 12;
 };
 
 #endif // STDIALOGTILEITEM_H

@@ -40,19 +40,17 @@ void STDialogTileItem::paint(QPainter *painter,
   QGraphicsRectItem::paint(painter, option, widget); // Paint rect first
   if(rect().width() * this->scaleX > TextLodWidthThreshold) // Draw only when tile is wide enough
   {
-    painter->save();
-    painter->setWorldTransform(deviceTransform(QTransform())); // Clear scaling this way
-    QPen p;
-    p.setColor(STUtil::BWBackground(Qt::black)); //TODO: Real backgorund color
+    painter->resetTransform(); // Reset painter coordinates so we can draw text untransformed
+    QPen p; // Color of text
+    p.setColor(STUtil::BWBackground(Qt::black)); //TODO: Real backgorund color, requires Tracks
     painter->setPen(p);
-    QRectF r = rect(), c;
-    c.setTopLeft(s_view->mapFromScene(pos()) - pos()
-                 + QPointF{TextLodWidthThreshold, 0});
-    // FIXME:I don't know why I must minus the original x coordinate but it works this way :/
-    c.setBottomRight(s_view->mapFromScene(r.bottomRight())
-                     + c.topLeft() - QPointF{TextLodWidthThreshold, 0});
-    // Minus one pixel out, so it doesn't stick to the edge
-    painter->drawText(c, Qt::TextWrapAnywhere, m_dialog->Text);
-    painter->restore();
+    QSizeF size_ = rect().size();
+    size_.rwidth() *= scaleX; // QSize doesn't have a function to scale by factor on axis so...
+    size_.rheight() *= scaleY;
+    QRectF c(s_view->mapFromScene(pos()), size_); // Area where text is rendered
+    c.setLeft(c.left() + TextLodWidthThreshold); // Move right a bit, we'll have some status here
+    if(c.left() < 0) c.setLeft(0); // Ensure the text is always visible even TL corner is invisible
+    if(c.top() < 0) c.setTop(0);
+    painter->drawText(c, Qt::TextWordWrap, m_dialog->Text); // TODO: Text render modes selectable
   }
 }
