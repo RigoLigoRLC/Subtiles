@@ -25,7 +25,7 @@ std::list<STTrackPtr>::const_iterator STDataReader::GetReadTrackCBegin()
   return (*m_tracks).cbegin();
 }
 
-std::_List_const_iterator<STTrackPtr> STDataReader::GetReadTrackCEnd()
+std::list<STTrackPtr>::const_iterator STDataReader::GetReadTrackCEnd()
 {
   return (*m_tracks).cend();
 }

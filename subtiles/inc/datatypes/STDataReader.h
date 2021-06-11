@@ -5,7 +5,7 @@
 
 class SubtilesHost;
 
-class STDataReader : public STDataOperator
+class STDataReader : private STDataOperator
 {
     friend class SubtilesHost;
 
@@ -16,6 +16,7 @@ class STDataReader : public STDataOperator
     std::list<STTrackPtr>::const_iterator GetReadTrackCBegin();
     std::list<STTrackPtr>::const_iterator GetReadTrackCEnd();
     size_t GetDialogCount();
+
   private:
     static QHash<uint, STDialogPtr> *m_dialogs;
     static std::list<STTrackPtr> *m_tracks;

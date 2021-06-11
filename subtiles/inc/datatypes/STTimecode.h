@@ -3,14 +3,14 @@
 
 #include <QString>
 
-using STTime = unsigned long long; ///< Time in milliseconds
+using STTime = long long; ///< Time in milliseconds
 
 namespace STData
 {
-  QString GetAssTimecode(const STTime);
+  QString GetAssTimecode(STTime);
   STTime TimeFromAssTimecode(const QString &);
-  STTime TimeFromSeconds(const double);
-  STTime TimeFromTime(const unsigned int, const unsigned int, const unsigned int, const unsigned int);
+  STTime TimeFromSeconds(double);
+  STTime TimeFromTime(unsigned int, unsigned int, unsigned int, unsigned int);
   bool VerifyTimecode(const QString &);
 }
 
