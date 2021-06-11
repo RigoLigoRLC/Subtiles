@@ -32,7 +32,9 @@ STGuestTimeline::STGuestTimeline(SubtilesMainFrame *frame, QWidget *parent) :
       a->Begin = i * 50000;
       a->Duration = 50000;
       a->Text = Lipsum.readLine();
-      m_scene->addItem(new STDialogTileItem(a));
+      auto item = new STDialogTileItem(a);
+      m_scene->addItem(item);
+      item->moveBy(0, i % 3 * 10);
       i++;
     }
   }
