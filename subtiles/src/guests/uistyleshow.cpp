@@ -14,6 +14,14 @@ STGuestUiStyleShow::STGuestUiStyleShow(SubtilesMainFrame *frame,
 
   connect(ui->pushButton_2, &QPushButton::clicked,
           this, &STGuestUiStyleShow::on_pushButton_2_clicked);
+
+  QFile ObtainStylesheet;
+  ObtainStylesheet.setFileName(":/styles/styles/standard/standard.qss");
+  ObtainStylesheet.open(QIODevice::ReadOnly);
+  auto stylesheet = ObtainStylesheet.readAll();
+  ui->textEdit->setPlainText(stylesheet);
+  qApp->setStyleSheet(stylesheet);
+  ObtainStylesheet.close();
 }
 
 void STGuestUiStyleShow::on_pushButton_2_clicked()
