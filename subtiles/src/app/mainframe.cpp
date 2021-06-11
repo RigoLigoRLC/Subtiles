@@ -23,6 +23,9 @@ void SubtilesMainFrame::evtMainWindowDestroyed(uint aWho)
 
 SubtilesMainFrame::SubtilesMainFrame()
 {
+  // Create host
+  m_host = new SubtilesHost();
+
   // Provide interface for unsafe data operators
   Q_ASSERT(STDataOperator::m_frame == nullptr);
   STDataOperator::m_frame = this;

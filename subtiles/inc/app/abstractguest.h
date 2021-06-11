@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "DockWidget.h"
+#include "DockWidgetTab.h"
 #include "app/commander.h"
 
 class SubtilesMainFrame;
@@ -18,7 +19,11 @@ class SubtilesAbstractGuest : public ads::CDockWidget
   Q_OBJECT
   public:
     SubtilesAbstractGuest(SubtilesMainFrame *frame, const QString &title, QWidget *parent) :
-      ads::CDockWidget(title, parent) { m_frame = frame; };
+      ads::CDockWidget(title, parent)
+    {
+      m_frame = frame;
+      //tabWidget()->setElideMode(Qt::ElideNone);
+    };
     virtual STGuestTypeID GetGuestTypeID() = 0;
 
   protected:
